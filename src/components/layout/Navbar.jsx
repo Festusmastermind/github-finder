@@ -44,3 +44,5 @@ Navbar.propTypes = {
 };
 export default Navbar;
 //This is comment is added by the team member 
+
+//This is new changes is added by the team member ...conflict on its way 
