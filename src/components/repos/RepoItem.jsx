@@ -1,4 +1,5 @@
 import { FaEye, FaInfo, FaLink, FaStar, FaUtensils } from "react-icons/fa";
+import PropTypes from 'prop-types'
 
 //catch a repo prop that is coming  in from RepoList..
 function RepoItem({ repo }) {
@@ -31,6 +32,12 @@ function RepoItem({ repo }) {
             </div>
         </div>
     );
+}
+
+
+//Adding a propType validation ...not mandatory..
+RepoItem.propTypes = { 
+    repo: PropTypes.object.isRequired,
 }
 
 export default RepoItem;

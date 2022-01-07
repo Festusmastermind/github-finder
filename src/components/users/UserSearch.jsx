@@ -1,13 +1,15 @@
 import { useState, useContext } from "react";
 import GithubContext from "../../context/github/GithubContext";
 import AlertContext from "../../context/alert/AlertContext";
+import { searchUsers } from "../../context/github/GithubActions";
+
 
 function UserSearch() {
     //form inputs states defined here ..
     const [text, setText] = useState("");
 
     //lets use the values we need from the ContextApi ..
-    const { users, searchUsers, clearUsers } = useContext(GithubContext);
+    const { users, dispatch} = useContext(GithubContext);
     const { setAlert} = useContext(AlertContext)
 
     //handling form inputs. ..
@@ -20,10 +22,10 @@ function UserSearch() {
         if (text === "") {
             setAlert('Please Enter Something', 'error')
         } else {
-            //displays the users that matches query...
-            // const users = await searchUsers(text); //stores the user datas' inside users ...clever..
-            // dispatch({ type: "GET_USERS", payload: users });
-            searchUsers(text)
+            
+            dispatch({type: 'SET_LOADING'}) //dispatch an action and sets its loading to true..
+            const users = await searchUsers(text); //stores the user datas' inside users ...clever..
+            dispatch({ type: "GET_USERS", payload: users });
             setText(""); //renders the search box empty ..
         }
     };
@@ -54,7 +56,7 @@ function UserSearch() {
             {users.length > 0 && (
                 <div>
                     <button
-                        onClick={clearUsers}
+                        onClick={ () => dispatch({ type: "CLEAR_USERS" })}
                         className="btn btn-ghost btn-lg"
                     >
                         Clear

@@ -5,20 +5,28 @@ import { useParams } from "react-router-dom";
 import GithubContext from "../context/github/GithubContext";
 import Spinner from "../components/layout/Spinner";
 import RepoList from "../components/repos/RepoList";
+import { getUserAndRepos } from "../context/github/GithubActions";
 
 //we need to have the props sent down from the ContextApi in GithubContext
 function User() {
     //destructing and the picking our need props..
-    const { user, getUser, loading, repos, getUserRepos } = useContext(GithubContext);
+    const { user, repos, loading, dispatch } = useContext(GithubContext);
 
     const params = useParams();
 
     //Once this page loads then we are goin to use the useEffect hook to get the content to loads on the page. ..instantly 
     useEffect(() => {
-        getUser(params.login);
-        getUserRepos(params.login);
-    }, []); //not specifying any dependencies makes sures the function runs once ..
+        dispatch({type: 'SET_LOADING'})
+        const getUserData = async () => {
+            const userData = await getUserAndRepos(params.login)
+            //inside the userData payload we have user payload and repos payload...
+            dispatch({type: 'GET_USER_AND_REPOS', payload: userData})
+        }
+        getUserData() //invoke the function ..
+    }, [dispatch, params.login]); //not specifying any dependencies makes sures the function runs once ..
 
+
+    
     //destructured the user object and get what we need from it
     const {
         name,
@@ -194,4 +202,13 @@ export default User;
 /***
  * for react-router-dom version 5...we can get a prop called match to specified a parameter (params) to be access via a url
  * for v6 match won't work .. so we useParams instead .
+ * 
+ * The code below has been refactored into a single function above .
+ * 
+ * const getUserData = async () => {
+        const userinfo = await getUser(params.login)
+        dispatch({type: 'GET_USER', payload: userinfo})
+        const userRepos =  await getUserRepos(params.login)
+        dispatch({type: 'GET_REPOS', payload: userRepos})
+    }
  */
