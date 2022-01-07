@@ -4,17 +4,19 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import GithubContext from "../context/github/GithubContext";
 import Spinner from "../components/layout/Spinner";
+import RepoList from "../components/repos/RepoList";
 
 //we need to have the props sent down from the ContextApi in GithubContext
 function User() {
     //destructing and the picking our need props..
-    const { user, getUser, loading } = useContext(GithubContext);
+    const { user, getUser, loading, repos, getUserRepos } = useContext(GithubContext);
 
     const params = useParams();
 
     //Once this page loads then we are goin to use the useEffect hook to get the content to loads on the page. ..instantly 
     useEffect(() => {
         getUser(params.login);
+        getUserRepos(params.login);
     }, []); //not specifying any dependencies makes sures the function runs once ..
 
     //destructured the user object and get what we need from it
@@ -179,8 +181,9 @@ function User() {
                         </div>
                     </div>
                 </div>
-
-                {/* <RepoList repos={repos} /> */}
+                                
+                <RepoList repos={repos}/> {/**passing repos as a prop..to RepoList Component .. */}
+            
             </div>
         </>
     );

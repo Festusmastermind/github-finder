@@ -56,11 +56,7 @@ export const GithubProvider = ({ children }) => {
     //Get a user respos..its a expecting a parameter (username)
     const getUserRepos = async (login) => {
         setLoading(); //sets loading to true...so that we can see the spinner for a sec
-        const response = await fetch(`${GITHUBURL}/users/${login}/repos`, {
-            header: {
-                Authorization: `token ${GITHUB_TOKEN}`,
-            },
-        });
+        const response = await fetch(`${GITHUBURL}/users/${login}/repos`);
         const data = await response.json();
         //send an action to GithubReducer
         dispatch({
@@ -83,6 +79,7 @@ export const GithubProvider = ({ children }) => {
                 searchUsers,
                 getUser,
                 clearUsers,
+                getUserRepos,
             }}
         >
             {children}
