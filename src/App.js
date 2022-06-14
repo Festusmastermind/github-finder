@@ -14,27 +14,28 @@ function App() {
 
     //Including all the props at the global level ..using the ContextApi...
     return (
-       <GithubProvider>
-           <AlertProvider>
+        <GithubProvider>
+            <AlertProvider>
                 <Router>
                     <div className='flex flex-col justify-between h-screen'>
-                    <Navbar /> 
-                    {/**The Main Contents are nested below ... */}
-                    <main className='container mx-auto px-3 pb-12'>
-                        <Alert />
-                        <Routes>
-                            <Route path='/' element={<Home />} /> 
-                            <Route path='/about' element={<About />} /> 
-                            <Route path='/notfound' element={<NotFound /> } />
-                            <Route path='/user/:login' element={<User />}/> 
-                            <Route path = '/*' element={<NotFound />} />
-                        </Routes>
-                    </main>
-                    <Footer /> 
+                        <Navbar /> 
+                        {/**The Main Contents for the individual pages can be navigated to below ... */}
+                        <main className='container mx-auto px-3 pb-12'>
+                            <Alert />
+                            <Routes>
+                                <Route path='/' element={<Home />} /> {/**This is the first page to load by default.. */}
+                                <Route path='/about' element={<About />} /> 
+                                <Route path='/notfound' element={<NotFound /> } />
+                                <Route path='/user/:login' element={<User />}/> 
+                                <Route path = '/*' element={<NotFound />} />
+                            </Routes>
+                        </main>
+                        {/**End of the individuals pages contents... */}
+                        <Footer /> 
                     </div>
                 </Router>
-           </AlertProvider>
-       </GithubProvider>
+            </AlertProvider>
+        </GithubProvider>
        
     );
 }

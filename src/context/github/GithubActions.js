@@ -6,7 +6,7 @@ const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 
 // const github = axios.create({
 //     baseURL: GITHUB_URL,
-//     headers: { Authorization: `token ${GITHUB_TOKEN}` }, //this is will used if i want to use headers ...
+//     headers: { Authorization: `token ${GITHUB_TOKEN}` }, //this is will be used if i want to use headers ...to send token or other information ..
 // })
 
 const github = axios.create({
@@ -42,11 +42,13 @@ export const getUserAndRepos = async (login) => {
 
 }
 
+
+
 /**
  * npm run build for production ...
  * When import a function as a component ...
  * we use {} e.g import {searchUsers} from './components/github'
- * because its a defaut export.....
+ * because its not a  default export.....
  * keep this in mind as well..
  * 
  * The below function is optimized into one function above

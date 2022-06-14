@@ -16,14 +16,14 @@ function User() {
 
     //Once this page loads then we are goin to use the useEffect hook to get the content to loads on the page. ..instantly 
     useEffect(() => {
-        dispatch({type: 'SET_LOADING'})
+        dispatch({type: 'SET_LOADING'}) //sets loading to true, while wait for the response from the server.
         const getUserData = async () => {
             const userData = await getUserAndRepos(params.login)
             //inside the userData payload we have user payload and repos payload...
             dispatch({type: 'GET_USER_AND_REPOS', payload: userData})
         }
         getUserData() //invoke the function ..
-    }, [dispatch, params.login]); //not specifying any dependencies makes sures the function runs once ..
+    }, [dispatch, params.login]); //an empty array indicated that the useEffect should run only once...
 
 
     

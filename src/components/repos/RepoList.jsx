@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { FaEye, FaInfo, FaLink, FaStar, FaUtensils } from 'react-icons/fa'
 import RepoItem from "./RepoItem";
 //instead the props convention ...we are going to destructured it instead..
 function RepoList({repos}) {

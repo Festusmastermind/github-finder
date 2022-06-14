@@ -34,7 +34,7 @@ function Navbar({ title }) {
         </nav>
     );
 }
-
+//Note that we are setting default for the props ..it means the its not necessary for the props to be passed down from the parent component
 Navbar.defaultProps = {
     title: "Github Finder",
 };

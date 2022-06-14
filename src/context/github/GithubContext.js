@@ -3,8 +3,8 @@ import githubReducer from "./GithubReducer";
 
 const GithubContext = createContext();
 
-const GITHUBURL = process.env.REACT_APP_GITHUB_URL;
-const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
+//const GITHUBURL = process.env.REACT_APP_GITHUB_URL;
+//const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 
 export const GithubProvider = ({ children }) => {
     // const [users, setUsers] = useState([]);
@@ -18,10 +18,8 @@ export const GithubProvider = ({ children }) => {
     };
     //using useReducer Hook..instead of useState...
     const [state, dispatch] = useReducer(githubReducer, initialState);
-   
-    
 
-    const setLoading = () => dispatch({ type: "SET_LOADING" }); //returns a dispatch ..
+    //const setLoading = () => dispatch({ type: "SET_LOADING" }); //returns a dispatch ..
 
     //const clearUsers = () => dispatch({ type: "CLEAR_USERS" }); //this can be called directly and not passed down.
 
